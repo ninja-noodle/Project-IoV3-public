@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project-IoV3</title>
+    <link rel="icon" type="image/png" href="src/heart.png">
+    <link rel="stylesheet" href="/styles/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Text:ital@0;1&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <section id="entry-pin-section" class="card-section">
+        <h1>Welcome</h1>
+        <section id="entry-pin-field-block-content" class="content">
+            <span class="no-select secondary-font">Enter your secret PIN to unlock</span>
+            <span id="entry-pin-error" class="no-select secondary-font hidden">Incorrect PIN. Try again!</span>
+
+            <!-- Mobile-Optimized 6-Digit PIN Field -->
+            <div id="entry-pin-wrapper">
+                <input type="text" id="entry-pin-hidden" inputmode="numeric" pattern="[0-9]*" maxlength="6"
+                    autocomplete="one-time-code" />
+                <div id="entry-pin-field">
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                    <div class="entry-pin-box"></div>
+                </div>
+            </div>
+
+            <button id="entry-pin-btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                </svg>
+            </button>
+        </section>
+    </section>
+    <section id="name-field-block" class="hidden">
+        <h1>Hello</h1>
+        <section class="content" id="name-field-block-content">
+            <span id="name-error" class="no-select secondary-font">Incorrect name, try again!</span>
+            <div id="name-check-field">
+                <input type="search" name="name" class="input" placeholder="Enter your name" />
+                <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+    </section>
+
+    <div id="loading-container" class="loader-container hidden">
+        <div class="loader"></div>
+
+        <div id="loading-messages" class="hidden">
+            <span class="status-msg hidden">Verifying your information...</span>
+            <span class="status-msg hidden">Fetching today's date...</span>
+            <span class="status-msg hidden">Doing calculations...</span>
+            <span class="status-msg hidden">Just a few more seconds...</span>
+        </div>
+
+        <div id="loading-messages-2" class="hidden">
+            <span class="status-msg hidden">Confirming birthday girl...</span>
+            <span class="status-msg hidden">Just a few more seconds...</span>
+            <span class="status-msg hidden">Confirmed!</span>
+        </div>
+    </div>
+
+    <section id="dob-field-block" class="hidden">
+        <h1>Verify</h1>
+        <section id="pin-field-block-content" class="content">
+            <span class="no-select secondary-font">Enter your Date of Birth</span>
+            <span id="dob-pin-error" class="no-select secondary-font hidden">It's incorrect! Try again</span>
+
+            <!-- 7-Digit PIN Wrapper -->
+            <div id="pin-field-wrapper">
+                <input type="text" id="dob-pin-hidden" inputmode="numeric" pattern="[0-9]*" maxlength="7"
+                    autocomplete="one-time-code" />
+                <div id="pin-field">
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                    <div class="pin-box"></div>
+                </div>
+            </div>
+
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                </svg>
+            </button>
+        </section>
+    </section>
+
+    <section id="success-block" class="hidden">
+        <h1>Welcome</h1>
+        <section id="success-block-content" class="content">
+            <span class="no-select secondary-font success-font">Yay!!! You are the right person :D</span>
+            <button>Let's go!!!
+            </button>
+        </section>
+    </section>
+
+    <section id="age-counter-block" class="hidden">
+        <h1>Candles</h1>
+        <section id="age-counter-block-content" class="content">
+            <!-- Candle Blueprint Template -->
+            <template id="candle-template">
+                <div class="candle-wrapper">
+                    <svg class="candle-svg" viewBox="0 0 64 64" width="36" height="36">
+                        <!-- Candle Wax Body -->
+                        <rect x="22" y="24" width="20" height="36" rx="3" fill="#FFB7B2" />
+                        <rect x="22" y="32" width="20" height="4" fill="#FFDAC1" />
+                        <rect x="22" y="44" width="20" height="4" fill="#FFDAC1" />
+
+                        <!-- Wick -->
+                        <line x1="32" y1="24" x2="32" y2="18" stroke="#555" stroke-width="2" stroke-linecap="round" />
+
+                        <!-- Outer Flame -->
+                        <path class="flame"
+                            d="M32 4 C32 4, 25 12, 25 16 C25 19.86 28.14 23 32 23 C35.86 23 39 19.86 39 16 C39 12, 32 4, 32 4 Z"
+                            fill="#FFB347" />
+
+                        <!-- Inner Flame Glow -->
+                        <path class="flame-inner"
+                            d="M32 10 C32 10, 28 14, 28 17 C28 19.2 29.8 21 32 21 C34.2 21 36 19.2 36 17 C36 14, 32 10, 32 10 Z"
+                            fill="#FFF566" />
+                    </svg>
+                </div>
+            </template>
+            <div id="candle-container"></div>
+            <p class="candle-count-text no-select secondary-font">
+                Candles lit: <span id="candle-count">1</span>
+            </p>
+            <button id="add-candle-btn" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                    fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                </svg>
+            </button>
+        </section>
+    </section>
+
+    <section id="image-selection-block" class="hidden">
+        <div class="recaptcha-card">
+            <div class="recaptcha-header">
+                <span class="header-subtitle">Select all squares with</span>
+                <h2 class="header-title">The Birthday Girl</h2>
+            </div>
+
+            <!-- 3x3 Grid container populated by JS -->
+            <div id="recaptcha-grid" class="recaptcha-grid"></div>
+
+            <div class="recaptcha-footer">
+                <span id="recaptcha-error" class="recaptcha-error hidden">Incorrect! Try again.</span>
+                <button id="verify-captcha-btn" type="button" class="verify-btn">Verify</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="cake" class="hidden">
+        <!-- Confetti Canvas overlay -->
+        <canvas id="confetti-canvas"></canvas>
+
+        <!-- Container for dynamically spawned balloons -->
+        <div id="balloon-container"></div>
+
+        <!-- Cake Card Container (Illustration Only) -->
+        <div class="cake-card">
+            <div class="cake-wrapper">
+                <!-- 1. Candle & Flame -->
+                <div class="main-candle">
+                    <div class="wick"></div>
+                    <div class="flame" id="main-flame"></div>
+                </div>
+
+                <!-- 2. Cake Tiers -->
+                <div class="layer top-tier">
+                    <div class="frosting"></div>
+                </div>
+                <div class="layer bottom-tier">
+                    <div class="sprinkle s1"></div>
+                    <div class="sprinkle s2"></div>
+                    <div class="sprinkle s3"></div>
+                    <div class="sprinkle s4"></div>
+                    <div class="sprinkle s5"></div>
+                    <div class="sprinkle s6"></div>
+                    <div class="sprinkle s7"></div>
+                    <div class="sprinkle s8"></div>
+                </div>
+
+                <!-- 3. Plate -->
+                <div class="plate"></div>
+
+                <!-- 4. Greenery & Leaves -->
+                <div class="leaf leaf-far-left"></div>
+                <div class="leaf leaf-mid-left"></div>
+                <div class="leaf leaf-mid-right"></div>
+                <div class="leaf leaf-far-right"></div>
+
+                <!-- 5. Base Flowers -->
+                <div class="flower-base flower-left"></div>
+                <div class="flower-base flower-center-left"></div>
+                <div class="flower-base flower-center-right"></div>
+                <div class="flower-base flower-right"></div>
+            </div>
+        </div>
+
+        <!-- Actions (Outside .cake-card) -->
+        <div class="action-container">
+            <button class="wish-btn" id="wish-btn">
+                <div class="btn-progress" id="btn-progress"></div>
+                <span class="btn-text" id="btn-text">Hold to Blow & Wish</span>
+            </button>
+        </div>
+    </section>
+
+    <section id="message-section" class="message-section hidden">
+        <h1 id="message-title"></h1>
+        <div class="wish-message" id="wish-message">
+        </div>
+        <img id="bouquet" src="src/bouquet-flower.png" alt="Bouquet">
+        <span class="no-select secondary-font">Try clicking the bouquet</span>
+        <hr>
+        <button id="view-gifts-btn" class="view-gifts-btn">View gifts</button>
+    </section>
+
+    <section id="view-gifts" class="hidden">
+        <h1>Verify</h1>
+        <section id="gift-pin-field-block-content" class="content">
+            <span class="no-select secondary-font">Enter the pin included in the gift</span>
+            <span id="gift-pin-error" class="no-select secondary-font hidden">It's incorrect! Try again</span>
+            <div id="gift-pin-wrapper">
+                <input type="text" id="gift-pin-hidden" inputmode="numeric" pattern="[0-9]*" maxlength="6"
+                    autocomplete="one-time-code" />
+                <div id="gift-pin-field">
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                    <div class="gift-pin-box"></div>
+                </div>
+            </div>
+            <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                </svg>
+            </button>
+        </section>
+    </section>
+
+    <section id="view-gifts-content" class="hidden">
+        <h2 class="gifts-title">Birthday Surprises<br>for you</h2>
+        <span class="no-select secondary-font">Hope you like all the gifts</span>
+        <!-- Horizontal Scroll Container -->
+        <div class="gifts-carousel">
+
+            <!-- Card 1 -->
+            <div id="card1" class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/cn-11134207-820l4-mr9ydgwcc9oib8@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 id="card1-title" class="card-heading"></h3>
+                <div id="card1-sub" class="card-text-box"></div>
+            </div>
+
+            <!-- Card 2 -->
+            <div id="card2" class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/my-11134207-820lb-mljcszdo8z5vce@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 id="card2-title" class="card-heading"></h3>
+                <div id="card2-sub" class="card-text-box"></div>
+            </div>
+
+            <!-- Card 3 -->
+            <div id="card3" class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/sg-11134207-7rdya-lzitjaiiccc46f@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 id="card3-title" class="card-heading"></h3>
+                <div id="card3-sub" class="card-text-box"></div>
+            </div>
+
+            <!-- Card 4 -->
+            <div id="card4" class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/my-11134211-820l8-mh1cyedmzriid7@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 id="card4-title" class="card-heading"></h3>
+                <div id="card4-sub" class="card-text-box"></div>
+            </div>
+
+            <!-- Card 5 -->
+            <div id="card5" class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/my-11134207-820lg-mi2n24nhyvbaa4@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 id="card5-title" class="card-heading"></h3>
+                <div id="card5-sub" class="card-text-box"></div>
+            </div>
+
+            <!-- Card 6 -->
+            <div id="card6" class="gift-card">
+                <div class="card-image-placeholder">
+                    <img src="https://down-my.img.susercontent.com/file/my-11134207-7r98q-luk4fgj6fw4z19@resize_w900_nl.webp"
+                        alt="Special Gift">
+                </div>
+                <h3 id="card6-title" class="card-heading"></h3>
+                <div id="card6-sub" class="card-text-box"></div>
+            </div>
+        </div>
+        <button id="done-gifts-btn" type="button">Done</button>
+    </section>
+
+    <section id="thank-you-block" class="card-section hidden">
+        <div class="thank-you-card">
+            <div class="heart-badge">💖</div>
+            <h2 id="thank-you-heading"></h2>
+            <p id="thank-you-sub" class="secondary-font"></p>
+            <div class="footer-credit">
+                <span id="thank-you-credit"></span>
+            </div>
+        </div>
+    </section>
+    <script src="scripts/transition.js"></script>
+    <script src="scripts/text-and-initialise.js"></script>
+    <script src="scripts/name-field.js"></script>
+    <script src="scripts/auto-pin-field.js"></script>
+    <script src="scripts/pin-field-checker.js"></script>
+    <script src="scripts/candle.js"></script>
+    <script src="scripts/recaptcha.js"></script>
+    <script src="scripts/cake.js"></script>
+    <script src="scripts/wish-message-section.js"></script>
+    <script src="scripts/gift-pin-script.js"></script>
+    <script src="scripts/gift-pin-field-checker.js"></script>
+    <script src="scripts/bouquet-hearts.js"></script>
+    <script src="scripts/finale.js"></script>
+</body>
+
+</html>

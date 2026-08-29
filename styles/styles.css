@@ -1,0 +1,1418 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and Edge */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    position: relative;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    /* Controls smoothness & duration */
+    z-index: -1;
+    /* Ensures it stays behind your text/cards */
+    pointer-events: none;
+}
+
+body.has-gradient::before {
+    opacity: 1;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+
+    padding: 50px 50px 50px 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: thistle;
+    border-radius: 0.5rem;
+}
+
+#name-field-block-content {
+    padding: 20px 50px 50px 50px;
+}
+
+#pin-field-block-content {
+    gap: 20px;
+}
+
+#gift-pin-field-block-content {
+    gap: 20px;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 3.2rem;
+}
+
+.secondary-font {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.content h2 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+#name-error {
+    margin: 10px 0 5px 0;
+    color: thistle;
+}
+
+
+#name-check-field {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#pin-field {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+#gift-pin-field {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+input {
+    max-width: 190px;
+    padding: 0.875rem;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    outline: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+input:active {
+    transform: translateY(10px);
+    box-shadow: 0px 0px 0 black;
+}
+
+.pin.active {
+    transform: translateY(-10px);
+    box-shadow: 0px 15.5px 0 black;
+}
+
+.pin {
+    max-width: 2.6rem;
+}
+
+.gift-pin.active {
+    transform: translateY(-10px);
+    box-shadow: 0px 15.5px 0 black;
+}
+
+.gift-pin {
+    max-width: 2.6rem;
+}
+
+#dob-pin-error {
+    color: red;
+}
+
+#gift-pin-error {
+    color: red;
+}
+
+button {
+    width: 190px;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    background-color: #fff;
+    transform-origin: center;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:active {
+    transform: translateY(10px);
+    box-shadow: 0px 0px 0 black;
+}
+
+.success-font {
+    font-size: 1.1rem;
+}
+
+#success-block-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#age-counter-block h1 {
+    font-size: 3rem;
+}
+
+#age-counter-block span {
+    font-size: 1.3rem;
+}
+
+#loading-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.status-msg {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+#age-counter-block-content {
+    background-color: #000;
+    opacity: 50%;
+    color: #fff;
+}
+
+#age-counter-block-content button {
+    background-color: #fff;
+    box-shadow: 0px 6px 0 rgb(157, 122, 157);
+    border: 0;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#age-counter-block-content button:active {
+    transform: translateY(10px);
+    box-shadow: 0px 0px 0 thistle;
+}
+
+
+/* ========================================================= */
+
+
+.page {
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes scaleOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-scale-out {
+    animation-name: scaleOut;
+    animation-timing-function: ease-in-out;
+}
+
+.animate-scale-in {
+    animation-name: scaleIn;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 25px;
+    aspect-ratio: 1;
+    margin: 2rem auto;
+    display: block;
+    --c: no-repeat linear-gradient(#000 0 0);
+    background: var(--c), var(--c), var(--c);
+    animation:
+        l18-1 1s infinite,
+        l18-2 1s infinite;
+}
+
+@keyframes l18-1 {
+
+    0%,
+    100% {
+        background-size: 20% 100%
+    }
+
+    33%,
+    66% {
+        background-size: 20% 20%
+    }
+}
+
+@keyframes l18-2 {
+
+    0%,
+    33% {
+        background-position: 0 0, 50% 50%, 100% 100%
+    }
+
+    66%,
+    100% {
+        background-position: 100% 0, 50% 50%, 0 100%
+    }
+}
+
+
+/* ========================================= */
+
+
+#candle-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    max-width: 420px;
+    min-height: 80px;
+    margin: 1.5rem auto;
+}
+
+/* Pop-in animation for each added candle */
+.candle-wrapper {
+    display: inline-flex;
+    animation: candlePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Looping flame flicker */
+.flame {
+    transform-origin: 32px 23px;
+    /* Pivot from the base of the wick */
+    animation: flameFlicker 0.12s infinite alternate ease-in-out;
+}
+
+@keyframes flameFlicker {
+    0% {
+        transform: scale(0.95) rotate(-2deg);
+        filter: drop-shadow(0 0 3px rgba(255, 179, 71, 0.6));
+    }
+
+    100% {
+        transform: scale(1.08) rotate(2deg);
+        filter: drop-shadow(0 0 8px rgba(255, 179, 71, 0.9));
+    }
+}
+
+@keyframes candlePop {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+/* ============= */
+
+.recaptcha-card {
+    width: 320px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(108, 122, 174, 0.25);
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    /* Clips header corners to match card radius */
+}
+
+.recaptcha-header {
+    background: #6C86E2;
+    /* Soft periwinkle matching top background gradient */
+    color: #ffffff;
+    padding: 16px;
+}
+
+.header-subtitle {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.header-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2px 0 0 0;
+    text-transform: lowercase;
+}
+
+.recaptcha-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background: #ffffff;
+    /* Clean white grid separators */
+    padding: 4px;
+}
+
+.grid-item {
+    position: relative;
+    aspect-ratio: 1;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+/* Selection state indicator */
+.grid-item.selected img {
+    transform: scale(0.86);
+}
+
+.grid-item.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 22px;
+    height: 22px;
+    background: #6C86E2;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.recaptcha-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: #ffffff;
+}
+
+.recaptcha-error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.verify-btn {
+    background: #6C86E2;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(108, 134, 226, 0.35);
+}
+
+.verify-btn:hover {
+    background: #5872D1;
+    transform: translateY(-1px);
+}
+
+.verify-btn:active {
+    transform: translateY(0);
+}
+
+/* ======== */
+
+/* ==========================================
+   #CAKE SECTION STYLES
+   ========================================== */
+#cake {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Stacks cake-card and button vertically */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+/* Confetti Fullscreen Overlay */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99;
+}
+
+/* Floating Balloons Container */
+#balloon-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 48px;
+    height: 60px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    opacity: 0.85;
+    animation: floatUp 8s ease-in forwards;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 14px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.85;
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+/* Cake Card Container */
+.cake-card {
+    width: 320px;
+    padding: 20px 20px 0;
+    background: thistle;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    border-radius: 20px;
+    border: 3px solid rgb(174, 138, 174);
+    box-shadow: 0px 10px 0px rgb(174, 138, 174);
+
+}
+
+.action-container {
+    width: 100%;
+    padding: 0 20px;
+    /* Optional: adds a small gap on screen edges */
+    box-sizing: border-box;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.cake-wrapper {
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* 1. Candle & Flame */
+.main-candle {
+    width: 12px;
+    height: 40px;
+    background: repeating-linear-gradient(45deg, #f07167, #f07167 6px, #ffffff 6px, #ffffff 12px);
+    border-radius: 4px;
+    position: relative;
+    z-index: 4;
+    margin-bottom: -2px;
+}
+
+.wick {
+    width: 2px;
+    height: 8px;
+    background: #555;
+    position: absolute;
+    top: -8px;
+    left: 5px;
+}
+
+.flame {
+    width: 16px;
+    height: 24px;
+    background: radial-gradient(ellipse at bottom, #fff566 20%, #ffb347 100%);
+    border-radius: 50% 50% 20% 20%;
+    position: absolute;
+    top: -30px;
+    left: -2px;
+    filter: drop-shadow(0 0 8px #ffb347);
+    animation: flicker 0.15s infinite alternate ease-in-out;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.flame.out {
+    transform: scale(0);
+    opacity: 0;
+}
+
+@keyframes flicker {
+    0% {
+        transform: scale(0.95) rotate(-2deg);
+    }
+
+    100% {
+        transform: scale(1.05) rotate(2deg);
+    }
+}
+
+/* 2. Cake Tiers */
+.layer {
+    position: relative;
+    box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.04);
+}
+
+.top-tier {
+    width: 130px;
+    height: 50px;
+    background: #e5989b;
+    border-radius: 10px 10px 4px 4px;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.frosting {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 8px 8px 0 0;
+}
+
+.frosting::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: radial-gradient(circle at 13px 0, #ffffff 12px, transparent 13px) repeat-x;
+    background-size: 26px 10px;
+}
+
+.bottom-tier {
+    width: 180px;
+    height: 60px;
+    background: #ffedd8;
+    border-radius: 10px 10px 4px 4px;
+    z-index: 2;
+    margin-top: -2px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sprinkles */
+.sprinkle {
+    position: absolute;
+    width: 10px;
+    height: 3px;
+    border-radius: 4px;
+    opacity: 0.5;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.s1 {
+    top: 18px;
+    left: 22px;
+    background: #ff006e;
+    transform: rotate(25deg);
+}
+
+/* Hot Magenta */
+.s2 {
+    top: 38px;
+    left: 45px;
+    background: #8338ec;
+    transform: rotate(-20deg);
+}
+
+/* Vivid Violet */
+.s3 {
+    top: 16px;
+    left: 82px;
+    background: #00bbf9;
+    transform: rotate(40deg);
+}
+
+/* Electric Cyan */
+.s4 {
+    top: 38px;
+    left: 110px;
+    background: #ff9f1c;
+    transform: rotate(-35deg);
+}
+
+/* Bright Tangerine */
+.s5 {
+    top: 15px;
+    left: 142px;
+    background: #ff006e;
+    transform: rotate(15deg);
+}
+
+/* Hot Magenta */
+.s6 {
+    top: 34px;
+    left: 158px;
+    background: #00f5d4;
+    transform: rotate(-45deg);
+}
+
+/* Bright Mint Cyan */
+.s7 {
+    top: 32px;
+    left: 78px;
+    background: #ff9f1c;
+    transform: rotate(10deg);
+}
+
+/* Bright Tangerine */
+.s8 {
+    top: 16px;
+    left: 115px;
+    background: #8338ec;
+    transform: rotate(-15deg);
+}
+
+/* Vivid Viole
+
+/* 3. Plate */
+.plate {
+    width: 220px;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(80, 60, 100, 0.12);
+    z-index: 1;
+    margin-top: -2px;
+}
+
+/* 4. Greenery & Leaves */
+.leaf {
+    position: absolute;
+    bottom: 2px;
+    width: 14px;
+    height: 8px;
+    background: #b7e4c7;
+    border-radius: 12px 0 12px 0;
+    z-index: 4;
+}
+
+.leaf-far-left {
+    left: 38px;
+    transform: rotate(-35deg);
+}
+
+.leaf-mid-left {
+    left: 78px;
+    transform: rotate(20deg) scale(1.15);
+    background: #74c69d;
+}
+
+.leaf-mid-right {
+    right: 78px;
+    transform: rotate(-20deg) scale(1.15);
+    background: #74c69d;
+}
+
+.leaf-far-right {
+    right: 38px;
+    transform: rotate(35deg);
+}
+
+/* 5. Base Flowers */
+.flower-base {
+    position: absolute;
+    bottom: 3px;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: 5;
+    box-shadow: -4px 0 0 #ffffff, 4px 0 0 #ffffff, 0 -4px 0 #ffffff, 0 4px 0 #ffffff;
+}
+
+.flower-base::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    background: #ffe5ec;
+    border-radius: 50%;
+}
+
+.flower-left {
+    left: 48px;
+    transform: scale(0.85);
+}
+
+.flower-center-left {
+    left: 92px;
+    transform: scale(1.1);
+}
+
+.flower-center-right {
+    right: 92px;
+    transform: scale(1);
+}
+
+.flower-right {
+    right: 48px;
+    transform: scale(0.85);
+}
+
+/* Button & Message */
+.wish-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    max-width: none;
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    border: 3px solid rgb(174, 138, 174);
+    box-shadow: none;
+    cursor: pointer;
+    overflow: hidden;
+    /* Clips the inner progress bar */
+
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: italic;
+    color: rgb(134, 95, 134);
+    font-size: 1.5rem;
+
+    position: relative;
+    top: 0px;
+
+    box-shadow: 0px 10px 0px rgb(174, 138, 174);
+    transform: translateY(0);
+    transition: all 0.15s ease;
+}
+
+.wish-btn.holding,
+.wish-btn:active {
+    box-shadow: 0px 0px 0px rgb(174, 138, 174);
+    top: 10px;
+}
+
+/* Progress Fill Bar */
+.btn-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: thistle;
+    /* Deeper purple fill as you hold */
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Button Text overlay */
+.btn-text {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Active Holding Effect */
+.wish-btn.holding {
+    transform: scale(0.98);
+}
+
+.wish-btn.completed {
+    background: #B7E4C7;
+    /* Soft success green */
+    color: rgb(174, 138, 174);
+    cursor: default;
+}
+
+.wish-message {
+    max-width: 600px;
+    text-align: justify;
+    hyphens: auto;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #5c3d75;
+    text-align: justify;
+    margin-top: 30px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    animation: popIn 0.5s ease forwards;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#view-gifts-btn {
+    margin: 0px 0 40px 0;
+}
+
+#wish-message {
+    color: #000;
+}
+
+#message-section h1 {
+    color: #000;
+    text-align: left;
+}
+
+/* ================================== */
+#view-gifts-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    box-sizing: border-box;
+    background-color: #d1c2d6;
+    /* Thistle background */
+    overflow: hidden;
+}
+
+.gifts-title {
+    font-family: "DM Serif Text", serif;
+    font-size: 2rem;
+    color: #2b1f3d;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* Horizontal Scroll Track */
+.gifts-carousel {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 10px 24px 30px;
+    /* Extra bottom padding for shadow room */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Horizontal Scrollbar */
+.gifts-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.gifts-carousel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    margin: 0 24px;
+}
+
+.gifts-carousel::-webkit-scrollbar-thumb {
+    background: rgb(174, 138, 174);
+    border-radius: 10px;
+}
+
+/* Long Vertical Card */
+.gift-card {
+    scroll-snap-align: center;
+    flex: 0 0 280px;
+    /* Fixed width for vertical proportion */
+    height: 560px;
+    /* Tall vertical height */
+    background: #ffffff;
+    border: 3px solid rgb(174, 138, 174);
+    border-radius: 20px;
+    box-shadow: 6px 6px 0px rgb(174, 138, 174);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Image Placeholder Box */
+.card-image-placeholder {
+    width: 100%;
+    height: 180px;
+    background-color: #f7ede2;
+    border: 2px dashed rgb(174, 138, 174);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(134, 95, 134);
+    font-size: 0.95rem;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+/* Real Image Support (when replacing placeholder) */
+.card-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Card Title */
+.card-heading {
+    font-family: "DM Serif Text", serif;
+    font-size: 1.35rem;
+    color: #2b1f3d;
+    margin: 0;
+}
+
+/* Card Text Box Container */
+.card-text-box {
+    flex: 1;
+    background: #faf4f9;
+    border: 2px solid rgba(174, 138, 174, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    overflow-y: auto;
+    font-family: "DM Sans", sans-serif;
+}
+
+.card-text-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #4a3b5c;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.card-text-box ul {
+    margin: 0;
+    padding-left: 15px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #4a3b5c;
+    text-align: justify;
+    hyphens: auto;
+}
+
+#bouquet {
+    display: block;
+    margin: 20px auto;
+    /* Centers horizontally and adds vertical spacing */
+    max-width: 175px;
+    /* Adjust size as needed */
+    height: auto;
+}
+
+.view-gifts-btn {
+    display: block;
+    margin: 20px auto 0;
+    /* Centers the button and adds top spacing */
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+/* Interactive cursor and tap feedback for the bouquet */
+#bouquet {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+#bouquet:active {
+    transform: scale(0.92) rotate(-4deg);
+}
+
+/* Floating heart confetti particles */
+.heart-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 1.5rem;
+    user-select: none;
+    animation: explodeAndFloat 1.2s ease-out forwards;
+}
+
+@keyframes explodeAndFloat {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.4) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--tr));
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--tx) * 1.1), calc(var(--ty) - 60px)) scale(0.8) rotate(calc(var(--tr) + 30deg));
+    }
+}
+
+
+
+
+
+/* 1. Outer Wrapper */
+#pin-field-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+/* 2. Layered Invisible Input (captures clicks & mobile typing) */
+#dob-pin-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 1px;
+    border: none;
+    background: transparent;
+    color: transparent;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* 3. Flex Container for Boxes */
+#pin-field {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    pointer-events: none;
+    padding-bottom: 16px;
+}
+
+/* 4. Visual Box Styling */
+.pin-box {
+    width: 38px;
+    height: 50px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    background-color: #fff;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* 5. Active Focus Elevation */
+.pin-box.active {
+    transform: translateY(-8px);
+    box-shadow: 0px 13.5px 0 black;
+}
+
+/* 1. Outer Wrapper */
+#gift-pin-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+/* 2. Layered Invisible Input */
+#gift-pin-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 1px;
+    border: none;
+    background: transparent;
+    color: transparent;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* 3. Flex Container for 6 Boxes */
+#gift-pin-field {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    pointer-events: none;
+    padding-bottom: 16px;
+}
+
+/* 4. Visual Box Styling */
+.gift-pin-box {
+    width: 42px;
+    height: 52px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    background-color: #fff;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* 5. Active Focus Elevation */
+.gift-pin-box.active {
+    transform: translateY(-8px);
+    box-shadow: 0px 13.5px 0 black;
+}
+
+/* Card Container */
+.thank-you-card {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    border-radius: 1rem;
+    padding: 2.25rem 1.5rem;
+    max-width: 340px;
+    margin: 2rem auto;
+    text-align: center;
+    box-shadow: 0px 8px 0px #000000;
+    box-sizing: border-box;
+}
+
+.heart-badge {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.thank-you-card h2 {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #000000;
+}
+
+.thank-you-card p {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    color: #333333;
+}
+
+/* Crafted Tag Style */
+.footer-credit {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #f3f4f6;
+    border: 1.5px solid #000000;
+    border-radius: 2rem;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #000000;
+    box-shadow: 0px 3.5px 0px #000000;
+}
+
+/* Soft pulse animation for heart */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+
+#view-gifts-content button {
+    border: 1.5px solid #2b1f3d;
+    color: #2b1f3d;
+    box-shadow: 0px 5.5px 0px #2b1f3d;
+}
+
+/* =========================== */
+#entry-pin-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+#entry-pin-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 1px;
+    border: none;
+    background: transparent;
+    color: transparent;
+    z-index: 10;
+    cursor: pointer;
+}
+
+#entry-pin-field {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    pointer-events: none;
+    padding-bottom: 16px;
+}
+
+.entry-pin-box {
+    width: 42px;
+    height: 52px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    background-color: #fff;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 0px 5.5px 0 black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.entry-pin-box.active {
+    transform: translateY(-8px);
+    box-shadow: 0px 13.5px 0 black;
+}

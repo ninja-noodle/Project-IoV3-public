@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // 1. STATE & CONSTANTS
     // -------------------------------------------------------------
-    // SHA-256 Hash of your secret PIN (e.g., "120498")
-    const ENTRY_PIN_HASH = "63cf52215b7514d8dcdc9bfabd47aef052acce6dbc732367e4e0d97c8c2ad01a";
+    // SHA-256 Hash of secret pin
+    const ENTRY_PIN_HASH = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
 
     // In-memory key holder (never saved to source code)
     let userSecretKey = "";
